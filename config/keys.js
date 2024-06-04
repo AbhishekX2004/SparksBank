@@ -19,4 +19,4 @@ export const USER = config.USER;
 export const HOST = config.HOST;
 export const DATABASE = config.DATABASE;
 export const PASSWORD = config.PASSWORD;
-export const POSTGRES_PORT = config.PORT;
+export const POSTGRES_PORT = config.POSTGRES_PORT;
