@@ -1,7 +1,7 @@
-const { createProxyMiddleware } = require("http-proxy-middleware");
-module.exports = function (app) {
+import { createProxyMiddleware } from "http-proxy-middleware";
+export default function (app) {
   app.use(
-    ["/api", "/auth/google"],
+    ["/fetch", "/save"],    // all paths starting with these will get proxied
     createProxyMiddleware({
       target: "http://localhost:8080",
     })
