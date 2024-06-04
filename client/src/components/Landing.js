@@ -1,9 +1,12 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 function Landing(){
     return(
         <div>
-            <button>clicke me</button>
+            LANDING <br/>
+            <Link to='/accounts'>clicke me</Link>
+
         </div>
     )
 }

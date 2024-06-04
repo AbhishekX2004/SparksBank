@@ -1,5 +1,5 @@
 import pg from 'pg';
-import { USER, HOST, DATABASE, PASSWORD, PORT } from '../config/keys.js';
+import { USER, HOST, DATABASE, PASSWORD, POSTGRES_PORT } from '../config/keys.js';
 
 // Create a new PostgreSQL client
 const db = new pg.Client({
@@ -7,7 +7,7 @@ const db = new pg.Client({
   host: HOST,
   database: DATABASE,
   password: PASSWORD,
-  port: PORT,
+  port: POSTGRES_PORT,
   ssl: {
     rejectUnauthorized: false // Ignore SSL certificate validation (for Render)
   }
