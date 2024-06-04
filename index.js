@@ -4,11 +4,14 @@ import accountRoutes from "./routes/accountRoutes.js";
 import transactionRoutes from "./routes/transactionRoutes.js";
 import path from "path";
 import { fileURLToPath } from "url";
-import fs from 'fs'
+import bodyParser from "body-parser";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 const PORT = process.env.PORT || 8080;
+
+// parsing JSON bodies
+app.use(bodyParser.json());
 
 // connecting to posgreSQL database
 connectToDatabase();
