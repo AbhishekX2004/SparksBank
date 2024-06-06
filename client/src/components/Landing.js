@@ -36,11 +36,11 @@ function Landing() {
     };
 
     if (loading) {
-        return <p>Loading users...</p>;
+        return <p>Loading past transactions...</p>;
     }
 
     if (error) {
-        return <p>Error loading users: {error.message}</p>;
+        return <p>Error loading transactions: {error.message}</p>;
     }
 
     return (
