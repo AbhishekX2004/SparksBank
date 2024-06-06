@@ -30,6 +30,10 @@ const transactionRoutes = (app) => {
             return res.status(400).send("Missing required fields: frid, toid, and amount.");
         }
 
+        if (isNaN(amount)) {
+            return res.status(400).send("Amount must be a number.");
+        }
+
         const query = "INSERT INTO transfers (frid, toid, amount) VALUES ($1, $2, $3) RETURNING *;";
         const values = [frid, toid, amount];
         const response = await runQueryValue(query, values);

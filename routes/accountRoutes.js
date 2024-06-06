@@ -2,9 +2,9 @@ import { runQuery, runQueryValue } from "../service/postgres.js";
 
 const accountRoutes = (app) => {
     // route to fetch all accounts
-    app.get('/fetch/accounts', async (req, res) => {
+    app.get('/fetch/account/all', async (req, res) => {
         try {
-            const response = await runQuery("SELECT accountno, name, picture FROM users;");    
+            const response = await runQuery("SELECT accountno, name, picture FROM users ORDER BY accountno;");    
             if (!response) {
                 return res.status(500).send("Unable to fetch Accounts.");
             }    
@@ -17,11 +17,11 @@ const accountRoutes = (app) => {
     });
     
     // route to fetch all accounts except given account
-    app.get('/fetch/accounts/except/:account', async (req, res) => {
+    app.get('/fetch/account/except/:account', async (req, res) => {
         const account = req.params.account;  // Extract the account parameter from the path    
         try {
             const response = await runQueryValue(
-                "SELECT accountno, name, picture FROM users WHERE accountno != $1;",
+                "SELECT accountno, name, picture FROM users WHERE accountno != $1 ORDER BY accountno;",
                 [account]
             );    
             if (!response) {
@@ -36,7 +36,7 @@ const accountRoutes = (app) => {
     });
 
     // route to fetch account of given account
-    app.get('/fetch/accounts/all/:account', async (req, res) => {
+    app.get('/fetch/account/:account/all', async (req, res) => {
         const account = req.params.account;  // Extract the account parameter from the path    
         try {
             const response = await runQueryValue(
@@ -52,8 +52,7 @@ const accountRoutes = (app) => {
             console.error("Error executing query:", error);
             res.status(500).send("An error occurred while fetching accounts.");
         }
-    });
-    
+    });    
 }
 
 export default accountRoutes;

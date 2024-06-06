@@ -1,0 +1,50 @@
+/* User.css */
+.userContainer {
+    margin: 20px;
+}
+
+.userHeader {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.profileImage {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.userDetails {
+    margin-bottom: 20px;
+}
+
+.userDetails p {
+    margin: 5px 0;
+}
+
+.buttonsContainer {
+    text-align: center;
+}
+
+.backButton,
+.transfer {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 0 10px;
+    text-decoration: none;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.backButton {
+    background-color: #007bff;
+}
+
+.transfer {
+    background-color: #28a745;
+}

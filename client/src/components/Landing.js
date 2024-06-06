@@ -5,7 +5,7 @@ function Landing(){
     return(
         <div>
             LANDING <br/>
-            <Link to='/accounts'>clicke me</Link>
+            <Link to='/accounts/all'>View all Accounts</Link>
 
         </div>
     )
