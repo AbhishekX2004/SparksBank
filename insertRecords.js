@@ -28,8 +28,8 @@ const insertRecords = async (imagePath) => {
         // const query = 'INSERT INTO users (accountno, name, gender, phone, email, picture, balance) VALUES ($1, $2, $3, $4, $5, $6, $7)';
         // const values = [18064,"Uday Raj Gupta", "M", 3546879210, "uday@gmail.com", imageData, 10000];
         
-        // const query = 'UPDATE users SET picture = $1 WHERE accountno = $2'
-        // const values = [imageData,18064]
+        const query = 'UPDATE users SET picture = $1 WHERE accountno = $2'
+        const values = [imageData,18060]
 
         const res = await db.query(query, values);
         console.log(`Done`);
@@ -42,7 +42,7 @@ const insertRecords = async (imagePath) => {
 };
 
 // Path to the image file
-const imagePath = join("../Resources/People/", 'Uday_Small.jpeg');
+const imagePath = join("../Resources/People/", 'Mayank_Small.jpeg');
 
 // Insert the image
 insertRecords(imagePath);

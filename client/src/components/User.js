@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { fetchUser, fetchTransactionsOf } from "../actions";
 import { arrayBufferToBase64 } from "../utils/bytesToImage";
 import "./User.css";
 
 function User() {
-    const {accountNumber} = useParams();
+    const { accountNumber } = useParams();
+    const navigate = useNavigate();
     const [user, setUser] = useState([]);
     const [transaction, setTransaction] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [showModal, setShowModal] = useState(false);
+    const [amount, setAmount] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
-        const fetch = async() => {
-            try{
+        const fetch = async () => {
+            try {
                 let data = await fetchUser(accountNumber);
                 setUser(data);
                 let transaction = await fetchTransactionsOf(accountNumber);
@@ -26,7 +30,7 @@ function User() {
             }
         };
         fetch();
-    },[accountNumber]);
+    }, [accountNumber]);
 
     const renderTransactions = () => {
         return transaction.map((txn) => {
@@ -44,7 +48,6 @@ function User() {
         });
     };
 
-
     if (loading) {
         return <p>Loading users...</p>;
     }
@@ -53,8 +56,33 @@ function User() {
         return <p>Error loading users: {error.message}</p>;
     }
 
-    const {name, gender, phone, email, picture, balance } = user[0];
+    const { name, gender, phone, email, picture, balance } = user[0];
     const imageSrc = `data:image/png;base64,${arrayBufferToBase64(picture.data)}`;
+
+    const handleTransferClick = () => {
+        setShowModal(true);
+    };
+
+    const handleModalClose = () => {
+        setShowModal(false);
+        setAmount("");
+        setErrorMessage("");
+    };
+
+    const handleAmountChange = (e) => {
+        setAmount(e.target.value);
+    };
+
+    const handleTransferSubmit = () => {
+        const transferAmount = parseFloat(amount);
+        if (isNaN(transferAmount) || transferAmount <= 0) {
+            setErrorMessage("Please enter a valid amount.");
+        } else if (transferAmount > balance) {
+            setErrorMessage("Insufficient balance.");
+        } else {
+            navigate(`/accounts/${accountNumber}/${transferAmount}`);
+        }
+    };
 
     return (
         <div className="userContainer">
@@ -65,15 +93,36 @@ function User() {
                 <p><strong>Gender:</strong> {gender === 'M' ? 'Male' : 'Female'}</p>
                 <p><strong>Phone:</strong> {phone}</p>
                 <p><strong>Email:</strong> {email}</p>
-                <p><strong>Balance:</strong> ${balance}</p>
+                <p><strong>Balance:</strong> ₹{balance}</p>
             </div>
             <div className="transactionContainer">
                 {transaction.length > 0 ? renderTransactions() : <p>No recent transactions found.</p>}
             </div>
             <div className="buttonsContainer">
                 <Link to="/accounts/all" className="backButton">Back to Users</Link>
-                <Link to={`/accounts/${accountNumber}`} className="transfer">Transfer Money</Link>
+                <button onClick={handleTransferClick} className="transfer">Transfer Money</button>
             </div>
+
+            {showModal && (
+                <div className="modal">
+                    <div className="modalContent">
+                        <h2>Transfer Money</h2>
+                        <label>
+                            Amount:
+                            <input
+                                type="number"
+                                value={amount}
+                                onChange={handleAmountChange}
+                                min="0"
+                                step="0.01"
+                            />
+                        </label>
+                        {errorMessage && <p className="error">{errorMessage}</p>}
+                        <button onClick={handleTransferSubmit}>Submit</button>
+                        <button onClick={handleModalClose}>Cancel</button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

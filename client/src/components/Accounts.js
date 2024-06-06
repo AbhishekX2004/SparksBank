@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { arrayBufferToBase64 } from "../utils/bytesToImage";
-import { fetchAllUsers, fetchAllUsersExcept } from "../actions";
+import { fetchAllUsers } from "../actions";
 import './Accounts.css';
 
 function Accounts() {
-    const { accountNumber } = useParams();
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -14,11 +13,7 @@ function Accounts() {
         const getUsers = async () => {
             try {
                 let data;
-                if (accountNumber === 'all') {
-                    data = await fetchAllUsers();
-                } else {
-                    data = await fetchAllUsersExcept(accountNumber);
-                }
+                data = await fetchAllUsers();
                 setUsers(data);
             } catch (error) {
                 console.error("Error fetching users:", error);
@@ -27,9 +22,8 @@ function Accounts() {
                 setLoading(false);
             }
         };
-
         getUsers();
-    }, [accountNumber]);
+    }, []);
 
     if (loading) {
         return <p>Loading users...</p>;

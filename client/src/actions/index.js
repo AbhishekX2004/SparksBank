@@ -1,6 +1,4 @@
 import axios from 'axios';
-
-
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 export const fetchAllTransactions = async () => {
@@ -34,6 +32,7 @@ export const saveTransaction = async (from,to,amount) => {
         return response.data;
     } catch (error) { 
         console.error(`\nSAVE transaction status :: FAILED\n${error}\n`);
+        throw error;
     }
 };
 
