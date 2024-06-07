@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom';
-import { fetch5Transactions } from "../actions";
+import React, { useEffect, useState } from "react";
+import { fetchAllTransactions } from "../actions";
 import formatDateTime from "../utils/formatDateTime";
 
-function Landing() {
+function Transactions() {
     const [transaction, setTransaction] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -11,15 +10,15 @@ function Landing() {
     useEffect(() => {
         const fetch = async () => {
             try {
-                let transaction = await fetch5Transactions();
-                setTransaction(transaction);
+                let data = await fetchAllTransactions();
+                setTransaction(data);
             } catch (error) {
-                console.error("Error fetching transactions:", error);
+                console.error("Error fetching users:", error);
                 setError(error);
             } finally {
                 setLoading(false);
             }
-        };
+        }
         fetch();
     }, []);
 
@@ -38,24 +37,18 @@ function Landing() {
     };
 
     if (loading) {
-        return <p>Loading past transactions...</p>;
+        return <p>Loading users...</p>;
     }
 
     if (error) {
-        return <p>Error loading transactions: {error.message}</p>;
+        return <p>Error loading users: {error.message}</p>;
     }
 
     return (
-        <div>
-            LANDING <br />
-            <Link to='/accounts/all'>View all Accounts</Link>
-            <br/>
-            <Link to='/transactions/all'>View all Transactions</Link>
-            <div className="allTransactionContainer">
-                {transaction.length > 0 ? renderTransactions() : <p>No recent transactions found.</p>}
-            </div>
+        <div className="allTransactionContainer">
+            {transaction.length > 0 ? renderTransactions() : <p>No recent transactions found.</p>}
         </div>
     );
 }
 
-export default Landing;
+export default Transactions;

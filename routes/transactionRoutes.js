@@ -3,6 +3,16 @@ import { runQuery, runQueryValue } from "../service/postgres.js";
 const transactionRoutes = (app) => {
     // route to GET all transactions
     app.get("/fetch/transaction/all", async (req, res) => {
+        const response = await runQuery("SELECT * FROM transfers ORDER BY tid DESC;");
+        if (!response) {
+            return res.status(500).send("Unable to fetch Accounts.");
+        }    
+        console.log(response);
+        res.status(200).send(response);
+    });
+
+    // route to GET recent 5 transactions
+    app.get("/fetch/transaction/recents", async (req, res) => {
         const response = await runQuery("SELECT * FROM transfers ORDER BY tid DESC LIMIT 5;");
         if (!response) {
             return res.status(500).send("Unable to fetch Accounts.");

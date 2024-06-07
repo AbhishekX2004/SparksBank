@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { fetchUser, fetchTransactionsOf } from "../actions";
 import { arrayBufferToBase64 } from "../utils/bytesToImage";
+import formatDateTime from "../utils/formatDateTime";
 import "./User.css";
 
 function User() {
@@ -39,7 +40,8 @@ function User() {
                 <div key={txn.tid} className="transaction">
                     <p>
                         <strong>Transaction ID:</strong> {txn.tid} <br />
-                        <strong>Amount:</strong> ${txn.amount} <br />
+                        <strong>Amount:</strong> ${txn.amount} <br />                        
+                        <strong>Timestamp:</strong> {formatDateTime(txn.timestamp)} <br />
                         <strong>Type:</strong> {isDebit ? "Debited" : "Credited"} <br />
                         <strong>{isDebit ? "To" : "From"} Account:</strong> {isDebit ? txn.toid : txn.frid}
                     </p>

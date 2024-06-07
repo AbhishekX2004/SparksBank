@@ -11,6 +11,16 @@ export const fetchAllTransactions = async () => {
     }
 };
 
+export const fetch5Transactions = async () => {
+    try {
+        const response = await axios.get(`${BASE_URL}/fetch/transaction/recents`);
+        // console.log(`\nFETCH transaction status :: SUCCESSFUL\n${response.data}\n`);
+        return response.data;
+    } catch (error) {
+        console.error(`\nFETCH transaction status :: FAILED\n${error}\n`);
+    }
+};
+
 export const fetchTransactionsOf = async (account) => {
     try{
         const response = await axios.get(`${BASE_URL}/fetch/transaction/${account}`);
