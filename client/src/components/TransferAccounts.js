@@ -95,7 +95,7 @@ function TransferAccounts() {
                 </div>
             );
         });
-    }, [users, handleUserClick]);
+    }, [users, handleUserClick, loading, error]);
 
     if (loading) {
         return <Loader text="Loading Users" />;
