@@ -8,7 +8,7 @@ const accountRoutes = (app) => {
             if (!response) {
                 return res.status(500).send("Unable to fetch Accounts.");
             }    
-            console.log(response);
+            // console.log(response);
             res.status(200).send(response);  // Send a 200 status code with the response
         } catch (error) {
             console.error("Error executing query:", error);
@@ -27,7 +27,7 @@ const accountRoutes = (app) => {
             if (!response) {
                 return res.status(500).send("Unable to fetch Accounts.");
             }    
-            console.log(response);
+            // console.log(response);
             res.status(200).send(response);
         } catch (error) {
             console.error("Error executing query:", error);
@@ -46,7 +46,7 @@ const accountRoutes = (app) => {
             if (!response) {
                 return res.status(500).send("Unable to fetch Accounts.");
             }    
-            console.log(response);
+            // console.log(response);
             res.status(200).send(response);
         } catch (error) {
             console.error("Error executing query:", error);

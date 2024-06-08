@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { arrayBufferToBase64 } from "../utils/bytesToImage";
 import { fetchAllUsers } from "../actions";
+import Loader from "./Loader";
 import './Accounts.css';
 
 function Accounts() {
@@ -26,7 +27,7 @@ function Accounts() {
     }, []);
 
     if (loading) {
-        return <p>Loading users...</p>;
+        return <Loader text="Loading Users" />;
     }
 
     if (error) {

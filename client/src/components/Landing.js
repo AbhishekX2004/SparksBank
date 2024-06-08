@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { fetch5Transactions } from "../actions";
 import formatDateTime from "../utils/formatDateTime";
+import Loader from "./Loader";
 
 function Landing() {
     const [transaction, setTransaction] = useState([]);
@@ -38,7 +39,7 @@ function Landing() {
     };
 
     if (loading) {
-        return <p>Loading past transactions...</p>;
+        return <Loader text="Loading recent Transactions" />;;
     }
 
     if (error) {

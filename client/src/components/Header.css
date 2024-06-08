@@ -1,0 +1,29 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.logo {
+    max-width: 20vh;
+    height: auto;
+}
+
+.logo-large {
+    display: block;
+}
+
+.logo-small {
+    display: none;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .logo-large {
+        display: none;
+    }
+    .logo-small {
+        display: block;
+    }
+}

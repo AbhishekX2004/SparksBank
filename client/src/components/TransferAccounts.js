@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { arrayBufferToBase64 } from "../utils/bytesToImage";
 import { fetchAllUsersExcept, saveTransaction } from "../actions";
+import Loader from "./Loader";
 import './Accounts.css';
 import Popup from './Popup';
 
@@ -97,7 +98,7 @@ function TransferAccounts() {
     }, [users, handleUserClick]);
 
     if (loading) {
-        return <p>Loading users...</p>;
+        return <Loader text="Loading Users" />;
     }
 
     if (error) {

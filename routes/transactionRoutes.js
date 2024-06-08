@@ -7,7 +7,7 @@ const transactionRoutes = (app) => {
         if (!response) {
             return res.status(500).send("Unable to fetch Accounts.");
         }    
-        console.log(response);
+        // console.log(response);
         res.status(200).send(response);
     });
 
@@ -17,7 +17,7 @@ const transactionRoutes = (app) => {
         if (!response) {
             return res.status(500).send("Unable to fetch Accounts.");
         }    
-        console.log(response);
+        // console.log(response);
         res.status(200).send(response);
     });
 
@@ -28,7 +28,7 @@ const transactionRoutes = (app) => {
         if (!response) {
             return res.status(500).send("Unable to fetch Accounts.");
         }    
-        console.log(response);
+        // console.log(response);
         res.status(200).send(response);
     });
 
@@ -76,7 +76,7 @@ const transactionRoutes = (app) => {
             return res.status(500).send("Unable to save transaction.");
         }
 
-        console.log(response);
+        // console.log(response);
         res.status(201).send(response);
     });
 

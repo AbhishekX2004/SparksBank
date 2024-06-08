@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { fetchUser, fetchTransactionsOf } from "../actions";
 import { arrayBufferToBase64 } from "../utils/bytesToImage";
 import formatDateTime from "../utils/formatDateTime";
+import Loader from "./Loader";
 import "./User.css";
 
 function User() {
@@ -51,7 +52,7 @@ function User() {
     };
 
     if (loading) {
-        return <p>Loading users...</p>;
+        return <Loader text="Loading User data" />;
     }
 
     if (error) {

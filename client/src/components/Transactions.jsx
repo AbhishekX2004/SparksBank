@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchAllTransactions } from "../actions";
 import formatDateTime from "../utils/formatDateTime";
+import Loader from "./Loader";
 
 function Transactions() {
     const [transaction, setTransaction] = useState([]);
@@ -37,11 +38,11 @@ function Transactions() {
     };
 
     if (loading) {
-        return <p>Loading users...</p>;
+        return <Loader text="Loading Transactions" />;
     }
 
     if (error) {
-        return <p>Error loading users: {error.message}</p>;
+        return <p>Error loading transactions: {error.message}</p>;
     }
 
     return (
