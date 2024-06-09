@@ -3,7 +3,7 @@ import "./Footer.css"
 
 function Footer() {
     return (
-        <footer>
+        <footer className="bg-body-tertiary mb-3">
             <hr />
             <div className="footerContainer">
                 <div>
@@ -12,7 +12,7 @@ function Footer() {
                         alt="Sparks Bank Logo"
                         className="logo-footer"
                     />
-                    <p>&copy; {new Date().getFullYear()} Sparks Bank</p>
+                    <p>&copy; {new Date().getFullYear()} | All rights reserved | Sparks Bank | By - Abhishek Verma</p>
                 </div>
                 <div className="socialLogoContainer">
                     <ul className="socialLogos">

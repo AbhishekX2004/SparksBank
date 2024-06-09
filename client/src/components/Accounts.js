@@ -52,9 +52,14 @@ function Accounts() {
     };
 
     return (
+        <>
+        <h2 className="user-header">
+            Please select an Account
+        </h2>
         <div className="cardContainer">
             {users.length > 0 ? renderUsers() : <p>No users available.</p>}
         </div>
+        </>
     );
 }
 

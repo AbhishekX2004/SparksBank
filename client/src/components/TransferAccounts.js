@@ -106,15 +106,23 @@ function TransferAccounts() {
     }
 
     return (
+        <>
+        <h2 className="user-header">
+            Please select the Receivers Account
+        </h2>
         <div className="cardContainer">
             {users.length > 0 ? renderUsers() : <p>No users available.</p>}
             {showModal && selectedUser && (
                 <div className="user-modal" style={{ display: 'flex' }}>
                     <div className="user-modalContent">
-                        <h2>Confirm Transfer to {selectedUser.accountno}</h2>
-                        <p>Are you sure you want to transfer to account number {selectedUser.accountno}?</p>
-                        <button onClick={handleConfirmTransfer}>Confirm</button>
-                        <button onClick={handleModalClose}>Cancel</button>
+                        <button className="user-cancelButtonTopRight" onClick={handleModalClose}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                            </svg>
+                        </button>
+                        <h2>Confirm Transfer to {selectedUser.name} ({selectedUser.accountno})</h2>
+                        <p>Are you sure you want to transfer <b>₹{amount}</b> to account number {selectedUser.accountno}?</p>
+                        <button className="user-submitButton" onClick={handleConfirmTransfer}>Confirm</button>
                     </div>
                 </div>
             )}
@@ -122,6 +130,7 @@ function TransferAccounts() {
                 <Popup message={popupMessage} onClose={() => setShowPopup(false)} />
             )}
         </div>
+        </>
     );
 }
 

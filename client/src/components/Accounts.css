@@ -25,3 +25,10 @@
     object-fit: cover; /* Ensure image covers the specified height and width */
     border-radius: 25px;
 }
+
+.user-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

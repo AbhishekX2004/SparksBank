@@ -24,7 +24,7 @@ const transactionRoutes = (app) => {
     // route to GET transactions involving a particural account.
     app.get("/fetch/transaction/:account", async (req, res) => {
         const account = req.params.account;
-        const response = await runQueryValue("SELECT * FROM transfers WHERE frid = $1 OR toid = $2;",[account, account]);
+        const response = await runQueryValue("SELECT * FROM transfers WHERE frid = $1 OR toid = $2 ORDER BY tid DESC;",[account, account]);
         if (!response) {
             return res.status(500).send("Unable to fetch Accounts.");
         }    

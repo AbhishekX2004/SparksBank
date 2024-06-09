@@ -1,4 +1,3 @@
-/* Default styles for larger screens */
 .landing-container {
   display: flex;
   justify-content: space-between;
@@ -70,7 +69,7 @@
 }
 
 .transaction-list {
-  max-height: 300px;  /* Adjust this height as necessary */
+  max-height: 57.5vh;  /* Adjust this height as necessary */
   overflow-y: auto;
   padding: 10px;
   box-sizing: border-box;
