@@ -67,9 +67,9 @@
     margin-bottom: 20px;
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
     .user-profileImage {}
-}
+} */
 
 .user-transactionContainer {
     max-height: 400px;
@@ -217,7 +217,7 @@
 
 @media (min-width: 768px) {
     .button-66 {
-        padding: 16px 44px;
+        padding: 16px 10px;
         min-width: 150px;
     }
 }

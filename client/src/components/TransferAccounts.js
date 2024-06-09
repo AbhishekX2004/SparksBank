@@ -109,8 +109,8 @@ function TransferAccounts() {
         <div className="cardContainer">
             {users.length > 0 ? renderUsers() : <p>No users available.</p>}
             {showModal && selectedUser && (
-                <div className="modal">
-                    <div className="modalContent">
+                <div className="user-modal" style={{ display: 'flex' }}>
+                    <div className="user-modalContent">
                         <h2>Confirm Transfer to {selectedUser.accountno}</h2>
                         <p>Are you sure you want to transfer to account number {selectedUser.accountno}?</p>
                         <button onClick={handleConfirmTransfer}>Confirm</button>

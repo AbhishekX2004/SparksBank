@@ -47,7 +47,6 @@ function Accounts() {
                         <p><b>Name</b>: {user.name}</p>
                     </Link>
                 </div>
-
             );
         });
     };

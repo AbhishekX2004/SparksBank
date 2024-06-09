@@ -1,0 +1,54 @@
+.allTransactionContainer {
+    height: 70vh;
+    /* Adjust height as needed */
+    overflow-y: scroll;
+    padding: 20px;
+    margin: 0 20vh 0 30vh;
+}
+
+.transaction {
+    padding: 10px;
+    background-color: #f3f3f3;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.transaction {
+    font-size: 14px;
+}
+
+.transaction ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+@media (max-width: 768px) {
+    .allTransactionContainer {
+        margin: 0 5vh 0 10vh;
+    }
+}
+
+@media (max-width: 425px) {
+    .allTransactionContainer {
+        margin: 0 1vh 0 2vh;
+    }
+}
+
+
+.allTransactionContainer::-webkit-scrollbar {
+    width: 6px;
+}
+
+.allTransactionContainer::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.allTransactionContainer::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+.allTransactionContainer::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

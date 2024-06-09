@@ -29,11 +29,17 @@ function Landing() {
         return transaction.map((txn) => {
             return (
                 <div key={txn.tid} className="transaction">
-                    <p>
-                        <strong>Amount:</strong> ${txn.amount} <br />
-                        <strong>Timestamp:</strong> {formatDateTime(txn.timestamp)} <br />
-                        <strong>From:</strong> {txn.frid} ---- <strong>To:</strong> {txn.toid}
-                    </p>
+                    <strong>Transaction ID:</strong> {txn.tid} <br />
+                    Transaction of
+                    <strong> Amount:</strong> ₹{txn.amount} on <b>{formatDateTime(txn.timestamp)}</b> <br />
+                    <ul>
+                        <li>
+                            <strong>From:</strong> {txn.frid}
+                        </li>
+                        <li>
+                            <strong>To:</strong> {txn.toid}
+                        </li>
+                    </ul>
                 </div>
             );
         });

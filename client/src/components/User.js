@@ -38,14 +38,26 @@ function User() {
         return transaction.map((txn) => {
             const isDebit = txn.frid === parseInt(accountNumber, 10);
             return (
-                <div key={txn.tid} className="user-transaction">
-                    <p>
-                        <strong>Transaction ID:</strong> {txn.tid} <br />
-                        <strong>Amount:</strong> ${txn.amount} <br />                        
-                        <strong>Timestamp:</strong> {formatDateTime(txn.timestamp)} <br />
-                        <strong>Type:</strong> {isDebit ? "Debited" : "Credited"} <br />
-                        <strong>{isDebit ? "To" : "From"} Account:</strong> {isDebit ? txn.toid : txn.frid}
-                    </p>
+                <div key={txn.tid} className="transaction">
+                    <ul style={{display:'flex',listStyleType:'none',justifyContent:'space-around',margin:0}}>
+                        <li>
+                            <strong>Transaction ID:</strong> {txn.tid}
+                        </li>
+                        <li>
+                            <strong>Type:</strong> {isDebit ? "Debited" : "Credited"}
+                        </li>
+                    </ul>
+                    <br />
+                    Transaction of
+                    <strong> Amount:</strong> ₹{txn.amount} on <b>{formatDateTime(txn.timestamp)}</b> <br />
+                    <ul>
+                        <li>
+                            <strong>From:</strong> {txn.frid}
+                        </li>
+                        <li>
+                            <strong>To:</strong> {txn.toid}
+                        </li>
+                    </ul>
                 </div>
             );
         });
@@ -63,12 +75,10 @@ function User() {
     const imageSrc = `data:image/png;base64,${arrayBufferToBase64(picture.data)}`;
 
     const handleTransferClick = () => {
-        console.log("Transfer Money button clicked");
         setShowModal(true);
     };
 
     const handleModalClose = () => {
-        console.log("Modal closed");
         setShowModal(false);
         setAmount("");
         setErrorMessage("");
@@ -104,7 +114,7 @@ function User() {
                     </div>
                 </div>
                 <div className="user-buttonsContainer">
-                    <Link to="/accounts/all" className="user-backButton button-66">Back to Users</Link>
+                    <Link to="/accounts/all" className="button-66">Back to All Accounts</Link>
                     <button onClick={handleTransferClick} className="user-transfer button-85">Transfer Money</button>
                 </div>
             </div>
@@ -116,7 +126,7 @@ function User() {
             </div>
 
             {showModal && (
-                <div className="user-modal" style={{ display: 'flex'}}>
+                <div className="user-modal" style={{ display: 'flex' }}>
                     <div className="user-modalContent">
                         <h2>Transfer Money</h2>
                         <label>
