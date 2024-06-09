@@ -1,0 +1,16 @@
+.logo-footer {
+    width: 8vh;
+}
+
+.socialLogos, .footerContainer, .footerContainer div {
+    display: flex;
+    list-style-type: none;
+}
+
+.footerContainer {
+    justify-content: space-around;
+}
+
+.footerContainer div {
+    display: inline;
+}

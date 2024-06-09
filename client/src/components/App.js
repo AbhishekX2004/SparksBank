@@ -7,6 +7,7 @@ import Accounts from "./Accounts";
 import TransferAccounts from './TransferAccounts';
 import Transactions from './Transactions';
 import User from './User';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 

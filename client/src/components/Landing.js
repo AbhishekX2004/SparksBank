@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { fetch5Transactions } from "../actions";
 import formatDateTime from "../utils/formatDateTime";
 import Loader from "./Loader";
+import "./Landing.css";  // Ensure you import the CSS file
 
 function Landing() {
     const [transaction, setTransaction] = useState([]);
@@ -38,22 +39,20 @@ function Landing() {
         });
     };
 
-    if (loading) {
-        return <Loader text="Loading recent Transactions" />;;
-    }
-
-    if (error) {
-        return <p>Error loading transactions: {error.message}</p>;
-    }
-
     return (
-        <div>
-            LANDING <br />
-            <Link to='/accounts/all'>View all Accounts</Link>
-            <br/>
-            <Link to='/transactions/all'>View all Transactions</Link>
-            <div className="allTransactionContainer">
-                {transaction.length > 0 ? renderTransactions() : <p>No recent transactions found.</p>}
+        <div className="landing-container">
+            <div className="left-column">
+                <h2>Navigation</h2>
+                <Link to='/accounts/all' className="button-89">View all Accounts</Link>
+                <Link to='/transactions/all' className="button-89">View all Transactions</Link>
+            </div>
+            <div className="right-column">
+                <h2>Recent Transactions</h2>
+                <div className="transaction-list">
+                    {loading ? <Loader text="Loading recent Transactions" /> :
+                        error ? <p>Error loading transactions: {error.message}</p> :
+                            transaction.length > 0 ? renderTransactions() : <p>No recent transactions found.</p>}
+                </div>
             </div>
         </div>
     );
