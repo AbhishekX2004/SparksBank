@@ -42,9 +42,9 @@ function Header() {
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <Nav className="justify-content-end flex-grow-1 pe-3">
-                            <Nav.Link href="https://www.thesparksfoundationsingapore.org/">Home</Nav.Link>
-                            <Nav.Link href="https://internship.thesparksfoundation.info/">Internships</Nav.Link>
-                            <Nav.Link href="https://internship.thesparksfoundation.info/">Contact Us</Nav.Link>
+                            <Nav.Link href="https://www.thesparksfoundationsingapore.org/" target="_blank">Home</Nav.Link>
+                            <Nav.Link href="https://internship.thesparksfoundation.info/" target="_blank">Internships</Nav.Link>
+                            <Nav.Link href="https://internship.thesparksfoundation.info/" target="_blank">Contact Us</Nav.Link>
                         </Nav>
                     </Offcanvas.Body>
                 </Navbar.Offcanvas>

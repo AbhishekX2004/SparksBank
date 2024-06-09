@@ -1,42 +1,30 @@
+/* Default styles for larger screens */
 .landing-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
 }
 
 .left-column {
-    width: 30%;
-    padding: 20px;
-    box-sizing: border-box;
+  width: 40%;
+  padding: 30px;
+  box-sizing: border-box;
+  border-right: 1px solid #ccc;
 }
 
-.right-column {
-    width: 65%;
-    padding: 20px;
-    box-sizing: border-box;
+.left-column h2 {
+  margin-bottom: 30px;  /* Add space between heading and buttons */
 }
 
-.right-column h2 {
-    margin-top: 0;
-}
-
-.transaction-list {
-    max-height: 300px;  /* Adjust this height as necessary */
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    padding: 10px;
-    box-sizing: border-box;
-}
-
-.transaction {
-    margin-bottom: 10px;
+.left-column a {
+  margin-bottom: 50px;
 }
 
 .button-89 {
   --b: 3px;   /* border thickness */
   --s: .55em; /* size of the corner */
   --color: #373B44;
-  
+  width: 40vh;
   padding: calc(.5em + var(--s)) calc(.9em + var(--s));
   color: var(--color);
   --_p: var(--s);
@@ -47,18 +35,20 @@
   outline: var(--b) solid #0000;
   outline-offset: .6em;
   font-size: 16px;
-
   border: 0;
-
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 15px;  /* Add space between buttons */
+}
+
+.button-89:last-child {
+  margin-bottom: 0;  /* Remove bottom margin for the last button */
 }
 
 .button-89:hover,
-.button-89:focus-visible{
+.button-89:focus-visible {
   --_p: 0px;
   outline-color: var(--color);
   outline-offset: .05em;
@@ -67,4 +57,48 @@
 .button-89:active {
   background: var(--color);
   color: #fff;
+}
+
+.right-column {
+  width: 65%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.right-column h2 {
+  margin-top: 0;
+}
+
+.transaction-list {
+  max-height: 300px;  /* Adjust this height as necessary */
+  overflow-y: auto;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.transaction {
+  margin-bottom: 10px;
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 768px) {
+  .landing-container {
+      flex-direction: column;
+  }
+
+  .left-column, .right-column {
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      border:  none;
+  }
+
+  .right-column{
+    
+  }
+
+  .transaction-list {
+      max-height: none;
+      overflow-y: visible;
+  }
 }
