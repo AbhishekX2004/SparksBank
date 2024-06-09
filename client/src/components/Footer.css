@@ -5,12 +5,22 @@
 .socialLogos, .footerContainer, .footerContainer div {
     display: flex;
     list-style-type: none;
+    justify-content: center;
+    align-items: center;
 }
 
 .footerContainer {
     justify-content: space-around;
 }
 
-.footerContainer div {
-    display: inline;
+.socialLogos li{
+    padding-left: 10px;
+}
+
+.footerContainer div p {
+    margin: 0 10px;
+}
+
+footer hr{
+    margin-bottom: 2px;
 }

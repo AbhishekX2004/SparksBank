@@ -38,7 +38,7 @@ function User() {
         return transaction.map((txn) => {
             const isDebit = txn.frid === parseInt(accountNumber, 10);
             return (
-                <div key={txn.tid} className="transaction">
+                <div key={txn.tid} className="user-transaction">
                     <p>
                         <strong>Transaction ID:</strong> {txn.tid} <br />
                         <strong>Amount:</strong> ${txn.amount} <br />                        
@@ -63,10 +63,12 @@ function User() {
     const imageSrc = `data:image/png;base64,${arrayBufferToBase64(picture.data)}`;
 
     const handleTransferClick = () => {
+        console.log("Transfer Money button clicked");
         setShowModal(true);
     };
 
     const handleModalClose = () => {
+        console.log("Modal closed");
         setShowModal(false);
         setAmount("");
         setErrorMessage("");
@@ -88,27 +90,34 @@ function User() {
     };
 
     return (
-        <div className="userContainer">
-            <h1 className="userHeader">Details of {name}</h1>
-            <img src={imageSrc} alt={name} className="profileImage" />
-            <div className="userDetails">
-                <p><strong>Account Number:</strong> {accountNumber}</p>
-                <p><strong>Gender:</strong> {gender === 'M' ? 'Male' : 'Female'}</p>
-                <p><strong>Phone:</strong> {phone}</p>
-                <p><strong>Email:</strong> {email}</p>
-                <p><strong>Balance:</strong> ₹{balance}</p>
+        <div className="user-userContainer">
+            <div className="user-leftColumn">
+                <h1 className="user-userHeader">Details of {name}</h1>
+                <div className="user-Details">
+                    <img src={imageSrc} alt={name} className="user-profileImage" />
+                    <div className="user-userDetails">
+                        <p><strong>Account Number:</strong> {accountNumber}</p>
+                        <p><strong>Gender:</strong> {gender === 'M' ? 'Male' : 'Female'}</p>
+                        <p><strong>Phone:</strong> {phone}</p>
+                        <p><strong>Email:</strong> {email}</p>
+                        <p><strong>Balance:</strong> ₹{balance}</p>
+                    </div>
+                </div>
+                <div className="user-buttonsContainer">
+                    <Link to="/accounts/all" className="user-backButton button-66">Back to Users</Link>
+                    <button onClick={handleTransferClick} className="user-transfer button-85">Transfer Money</button>
+                </div>
             </div>
-            <div className="transactionContainer">
-                {transaction.length > 0 ? renderTransactions() : <p>No recent transactions found.</p>}
-            </div>
-            <div className="buttonsContainer">
-                <Link to="/accounts/all" className="backButton">Back to Users</Link>
-                <button onClick={handleTransferClick} className="transfer">Transfer Money</button>
+            <div className="user-rightColumn">
+                <h2 className="user-transactionsHeader">Past Transactions</h2>
+                <div className="user-transactionContainer">
+                    {transaction.length > 0 ? renderTransactions() : <p>No recent transactions found.</p>}
+                </div>
             </div>
 
             {showModal && (
-                <div className="modal">
-                    <div className="modalContent">
+                <div className="user-modal" style={{ display: 'flex'}}>
+                    <div className="user-modalContent">
                         <h2>Transfer Money</h2>
                         <label>
                             Amount:
@@ -120,7 +129,7 @@ function User() {
                                 step="0.01"
                             />
                         </label>
-                        {errorMessage && <p className="error">{errorMessage}</p>}
+                        {errorMessage && <p className="user-error">{errorMessage}</p>}
                         <button onClick={handleTransferSubmit}>Submit</button>
                         <button onClick={handleModalClose}>Cancel</button>
                     </div>
