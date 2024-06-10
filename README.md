@@ -1,7 +1,7 @@
 # Welcome to Sparks Bank 
 ## By - Abhishek Verma
 
-# Click here to see the deployed application ([Sparks Bank]https://sparksbank.onrender.com/)
+# Click here to see the deployed application ([Sparks Bank](https://sparksbank.onrender.com/))
 
 ## This folder holds the Backend aspect of the Appllication and also the client folder (Frontend folder)
 
@@ -20,7 +20,7 @@ It is used to run the server in development mode on the port 8080.
 ### `npm client`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [localhost:3000](http://localhost:3000) to view it in your browser.
 
 ### `npm run dev`
 
