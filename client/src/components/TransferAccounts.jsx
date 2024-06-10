@@ -90,10 +90,11 @@ function TransferAccounts() {
 
             return (
                 <motion.div
+                    key={user.accountno}
                     whileHover={{ y: -10 }}
                 >
                     <motion.div
-                        key={user.accountno}
+                        
                         className="card"
                         onClick={() => handleUserClick(user)}
                         initial={{ opacity: 0, y: -50 }}

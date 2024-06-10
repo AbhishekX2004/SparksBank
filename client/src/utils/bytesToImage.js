@@ -1,3 +1,4 @@
+// converts incoming binary data to Base64
 export const arrayBufferToBase64 = (buffer) => {
     let binary = '';
     const bytes = new Uint8Array(buffer);

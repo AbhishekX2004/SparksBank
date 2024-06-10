@@ -17,11 +17,11 @@ function App() {
 			<div>
 				<Header />
 				<Routes>
-					<Route path="/" element={<Landing />}/>
-					<Route path='/transactions/all' element={<Transactions />}/>
-					<Route path="/accounts/all" element={<Accounts />}/>
-					<Route path='/accounts/:accountNumber/:amount' element={<TransferAccounts/>}/>
-					<Route path='/user/:accountNumber' element={<User />}/>
+					<Route path="/" element={<Landing />} />
+					<Route path='/transactions/all' element={<Transactions />} />
+					<Route path="/accounts/all" element={<Accounts />} />
+					<Route path='/accounts/:accountNumber/:amount' element={<TransferAccounts />} />
+					<Route path='/user/:accountNumber' element={<User />} />
 				</Routes>
 				<Footer />
 			</div>

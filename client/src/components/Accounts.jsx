@@ -42,10 +42,10 @@ function Accounts() {
 
             return (
                 <motion.div
+                    key={user.accountno}
                     whileHover={{ y: -10 }}
                 >
-                    <motion.div
-                        key={user.accountno}
+                    <motion.div                        
                         className="card"
                         initial={{ opacity: 0, y: -50 }}
                         animate={{ opacity: 1, y: 0 }}

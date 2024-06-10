@@ -12,7 +12,8 @@
 }
 
 .left-column h2 {
-  margin-bottom: 30px;  /* Add space between heading and buttons */
+  margin-bottom: 30px;
+  /* Add space between heading and buttons */
 }
 
 .left-column a {
@@ -20,16 +21,17 @@
 }
 
 .button-89 {
-  --b: 3px;   /* border thickness */
-  --s: .55em; /* size of the corner */
+  --b: 3px;
+  /* border thickness */
+  --s: .55em;
+  /* size of the corner */
   --color: #373B44;
   width: 40vh;
   padding: calc(.5em + var(--s)) calc(.9em + var(--s));
   color: var(--color);
   --_p: var(--s);
   background:
-    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
-    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    conic-gradient(from 90deg at var(--b) var(--b), #0000 90deg, var(--color) 0) var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
   transition: .3s linear, color 0s, background-color 0s;
   outline: var(--b) solid #0000;
   outline-offset: .6em;
@@ -39,11 +41,13 @@
   -webkit-user-select: none;
   touch-action: manipulation;
   display: block;
-  margin-bottom: 15px;  /* Add space between buttons */
+  margin-bottom: 15px;
+  /* Add space between buttons */
 }
 
 .button-89:last-child {
-  margin-bottom: 0;  /* Remove bottom margin for the last button */
+  margin-bottom: 0;
+  /* Remove bottom margin for the last button */
 }
 
 .button-89:hover,
@@ -69,7 +73,8 @@
 }
 
 .transaction-list {
-  max-height: 57.5vh;  /* Adjust this height as necessary */
+  max-height: 57.5vh;
+  /* Adjust this height as necessary */
   overflow-y: auto;
   padding: 10px;
   box-sizing: border-box;
@@ -82,18 +87,19 @@
 /* Responsive styles for smaller screens */
 @media (max-width: 768px) {
   .landing-container {
-      flex-direction: column;
+    flex-direction: column;
   }
 
-  .left-column, .right-column {
-      width: 100%;
-      padding: 10px;
-      box-sizing: border-box;
-      border:  none;
+  .left-column,
+  .right-column {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: none;
   }
 
   .transaction-list {
-      max-height: none;
-      overflow-y: visible;
+    max-height: none;
+    overflow-y: visible;
   }
 }

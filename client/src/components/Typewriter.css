@@ -1,19 +1,5 @@
 .typewriter-container {
-    display: flex;
-    align-items: center;
-    font-size: 1.5em;
-  }
-  
-  .typewriter-text {
-    border-right: 2px solid whitesmoke;
-    padding-right: 5px;
-    white-space: nowrap;
-    overflow: hidden;
-    display: inline-block;
-    animation: blink-caret 0.75s step-end infinite;
-  }
-  
-  @keyframes blink-caret {
-    from, to { border-color: transparent; }
-    50% { border-color: whitesmoke; }
-  }
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+}

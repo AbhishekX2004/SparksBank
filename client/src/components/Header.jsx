@@ -42,7 +42,7 @@ function Header() {
                     </Offcanvas.Header>
                     <Offcanvas.Body>
                         <Nav className="justify-content-end flex-grow-1 pe-3">
-                        <img className="logo" style={{ width: "6vh" }} src="../TheSparksFoundationsLogo.png" alt="Sparks Foundation Logo"></img> 
+                            <img className="logo" style={{ width: "6vh" }} src="../TheSparksFoundationsLogo.png" alt="Sparks Foundation Logo"></img>
                             <Nav.Link href="https://www.thesparksfoundationsingapore.org/" target="_blank">Home</Nav.Link>
                             <Nav.Link href="https://internship.thesparksfoundation.info/" target="_blank">Internships</Nav.Link>
                             <Nav.Link href="https://internship.thesparksfoundation.info/" target="_blank">Contact Us</Nav.Link>
