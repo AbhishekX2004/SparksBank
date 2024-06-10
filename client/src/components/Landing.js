@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { fetch5Transactions } from "../actions";
-import formatDateTime from "../utils/formatDateTime";
 import Loader from "./Loader";
-import "./Landing.css";  // Ensure you import the CSS file
+import Transaction from "./Transaction";
+import "./Landing.css";
 
 function Landing() {
     const [transaction, setTransaction] = useState([]);
@@ -26,23 +26,9 @@ function Landing() {
     }, []);
 
     const renderTransactions = () => {
-        return transaction.map((txn) => {
-            return (
-                <div key={txn.tid} className="transaction">
-                    <strong>Transaction ID:</strong> {txn.tid} <br />
-                    Transaction of
-                    <strong> Amount:</strong> ₹{txn.amount} on <b>{formatDateTime(txn.timestamp)}</b> <br />
-                    <ul>
-                        <li>
-                            <strong>From:</strong> {txn.frid}
-                        </li>
-                        <li>
-                            <strong>To:</strong> {txn.toid}
-                        </li>
-                    </ul>
-                </div>
-            );
-        });
+        return transaction.map((txn, index) => (
+            <Transaction key={txn.tid} txn={txn} index={index} />
+        ));
     };
 
     return (

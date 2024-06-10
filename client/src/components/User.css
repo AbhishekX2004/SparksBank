@@ -67,8 +67,8 @@
 }
 
 .user-transactionContainer {
-    max-height: 400px;
-    overflow-y: auto;
+    max-height: 60vh;
+    overflow-y: scroll;
     padding-right: 10px;
 }
 
@@ -86,7 +86,6 @@
         justify-content: space-between;
     }
 }
-
 
 .button-85 {
     padding: 0.6em 2em;
@@ -192,7 +191,6 @@
         padding: 16px 10px;
         min-width: 150px;
     }
-
 }
 
 .user-modal {
@@ -292,7 +290,6 @@ button {
     color: #ff0707;
 }
 
-/* Animation for modal appearance */
 @keyframes user-fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }

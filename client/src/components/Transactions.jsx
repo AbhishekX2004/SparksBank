@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchAllTransactions } from "../actions";
-import formatDateTime from "../utils/formatDateTime";
 import Loader from "./Loader";
+import Transaction from "./Transaction";
 import "./Transactions.css";
 
 function Transactions() {
@@ -25,23 +25,9 @@ function Transactions() {
     }, []);
 
     const renderTransactions = () => {
-        return transaction.map((txn) => {
-            return (
-                <div key={txn.tid} className="transaction">
-                    <strong>Transaction ID:</strong> {txn.tid} <br />
-                    Transaction of
-                    <strong> Amount:</strong> ₹{txn.amount} on <b>{formatDateTime(txn.timestamp)}</b> <br />
-                    <ul>
-                        <li>
-                            <strong>From:</strong> {txn.frid}
-                        </li>
-                        <li>
-                            <strong>To:</strong> {txn.toid}
-                        </li>
-                    </ul>
-                </div>
-            );
-        });
+        return transaction.map((txn, index) => (
+            <Transaction key={txn.tid} txn={txn} index={index} />
+        ));
     };
 
     if (loading) {

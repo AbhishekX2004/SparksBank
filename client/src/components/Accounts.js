@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { arrayBufferToBase64 } from "../utils/bytesToImage";
 import { fetchAllUsers } from "../actions";
 import Loader from "./Loader";
@@ -35,30 +36,40 @@ function Accounts() {
     }
 
     const renderUsers = () => {
-        return users.map((user) => {
+        return users.map((user, index) => {
             const base64Image = arrayBufferToBase64(user.picture.data);
             const imageSrc = `data:image/png;base64,${base64Image}`;
 
             return (
-                <div key={user.accountno} className="card">
-                    <Link to={`/user/${user.accountno}`}>
-                        <img src={imageSrc} alt={user.name} className="cardImage" />
-                        <p><b>Account No:</b> {user.accountno}</p>
-                        <p><b>Name</b>: {user.name}</p>
-                    </Link>
-                </div>
+                <motion.div
+                    whileHover={{ y: -10 }}
+                >
+                    <motion.div
+                        key={user.accountno}
+                        className="card"
+                        initial={{ opacity: 0, y: -50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: index * 0.1 }}
+                    >
+                        <Link to={`/user/${user.accountno}`}>
+                            <img src={imageSrc} alt={user.name} className="cardImage" />
+                            <p><b>Account No:</b> {user.accountno}</p>
+                            <p><b>Name</b>: {user.name}</p>
+                        </Link>
+                    </motion.div>
+                </motion.div>
             );
         });
     };
 
     return (
         <>
-        <h2 className="user-header">
-            Please select an Account
-        </h2>
-        <div className="cardContainer">
-            {users.length > 0 ? renderUsers() : <p>No users available.</p>}
-        </div>
+            <h2 className="user-header">
+                Please select an Account
+            </h2>
+            <div className="cardContainer">
+                {users.length > 0 ? renderUsers() : <p>No users available.</p>}
+            </div>
         </>
     );
 }

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { fetchUser, fetchTransactionsOf } from "../actions";
 import { arrayBufferToBase64 } from "../utils/bytesToImage";
-import formatDateTime from "../utils/formatDateTime";
+import UserTransaction from "./UserTransaction";
 import Loader from "./Loader";
+import Typewriter from "./Typewriter";
 import "./User.css";
 
 function User() {
@@ -35,31 +36,9 @@ function User() {
     }, [accountNumber]);
 
     const renderTransactions = () => {
-        return transaction.map((txn) => {
+        return transaction.map((txn, index) => {
             const isDebit = txn.frid === parseInt(accountNumber, 10);
-            return (
-                <div key={txn.tid} className="transaction">
-                    <ul style={{ display: 'flex', listStyleType: 'none', justifyContent: 'space-around', margin: 0 }}>
-                        <li>
-                            <strong>Transaction ID:</strong> {txn.tid}
-                        </li>
-                        <li>
-                            <strong>Type:</strong> {isDebit ? "Debited" : "Credited"}
-                        </li>
-                    </ul>
-                    <br />
-                    Transaction of
-                    <strong> Amount:</strong> ₹{txn.amount} on <b>{formatDateTime(txn.timestamp)}</b> <br />
-                    <ul>
-                        <li>
-                            <strong>From:</strong> {txn.frid}
-                        </li>
-                        <li>
-                            <strong>To:</strong> {txn.toid}
-                        </li>
-                    </ul>
-                </div>
-            );
+            return <UserTransaction key={txn.tid} txn={txn} index={index} isDebit={isDebit} />;
         });
     };
 
@@ -71,8 +50,8 @@ function User() {
         return <p>Error loading users: {error.message}</p>;
     }
 
-    const { name, gender, phone, email, picture, balance } = user[0];
-    const imageSrc = `data:image/png;base64,${arrayBufferToBase64(picture.data)}`;
+    const { name, gender, phone, email, picture, balance } = user[0] || {};
+    const imageSrc = picture ? `data:image/png;base64,${arrayBufferToBase64(picture.data)}` : '';
 
     const handleTransferClick = () => {
         setShowModal(true);
@@ -102,7 +81,9 @@ function User() {
     return (
         <div className="user-userContainer">
             <div className="user-leftColumn">
-                <h1 className="user-userHeader">Details of {name}</h1>
+                <h1 className="user-userHeader">
+                    Details of <Typewriter name={name} />
+                </h1>
                 <div className="user-Details">
                     <img src={imageSrc} alt={name} className="user-profileImage" />
                     <div className="user-userDetails">
@@ -148,7 +129,6 @@ function User() {
                         <button className="user-submitButton" onClick={handleTransferSubmit}>Submit</button>
                     </div>
                 </div>
-
             )}
         </div>
     );

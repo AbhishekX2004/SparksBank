@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { arrayBufferToBase64 } from "../utils/bytesToImage";
 import { fetchAllUsersExcept, saveTransaction } from "../actions";
+import { motion } from "framer-motion";
 import Loader from "./Loader";
 import './Accounts.css';
 import Popup from './Popup';
@@ -62,11 +63,11 @@ function TransferAccounts() {
         try {
             const { accountno } = selectedUser;
             await saveTransaction(accountNumber, accountno, amount);
-            setPopupMessage('Transaction successful');
+            setPopupMessage('Transaction successful!');
             setShowPopup(true);
         } catch (error) {
             console.error(`\nSAVE transaction status :: FAILED\n${error}\n`);
-            setPopupMessage('Transaction failed');
+            setPopupMessage('Transaction failed!');
             setShowPopup(true);
         } finally {
             setShowModal(false);
@@ -83,16 +84,27 @@ function TransferAccounts() {
             return null; // Early return to prevent rendering
         }
 
-        return users.map((user) => {
+        return users.map((user, index) => {
             const base64Image = arrayBufferToBase64(user.picture.data);
             const imageSrc = `data:image/png;base64,${base64Image}`;
 
             return (
-                <div key={user.accountno} className="card" onClick={() => handleUserClick(user)}>
-                    <img src={imageSrc} alt={user.name} className="cardImage" />
-                    <p><b>Account No:</b> {user.accountno}</p>
-                    <p><b>Name</b>: {user.name}</p>
-                </div>
+                <motion.div
+                    whileHover={{ y: -10 }}
+                >
+                    <motion.div
+                        key={user.accountno}
+                        className="card"
+                        onClick={() => handleUserClick(user)}
+                        initial={{ opacity: 0, y: -50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: index * 0.1 }}
+                    >
+                        <img src={imageSrc} alt={user.name} className="cardImage" />
+                        <p><b>Account No:</b> {user.accountno}</p>
+                        <p><b>Name</b>: {user.name}</p>
+                    </motion.div>
+                </motion.div>
             );
         });
     }, [users, handleUserClick, loading, error]);
@@ -107,29 +119,29 @@ function TransferAccounts() {
 
     return (
         <>
-        <h2 className="user-header">
-            Please select the Receivers Account
-        </h2>
-        <div className="cardContainer">
-            {users.length > 0 ? renderUsers() : <p>No users available.</p>}
-            {showModal && selectedUser && (
-                <div className="user-modal" style={{ display: 'flex' }}>
-                    <div className="user-modalContent">
-                        <button className="user-cancelButtonTopRight" onClick={handleModalClose}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-lg" viewBox="0 0 16 16">
-                                <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
-                            </svg>
-                        </button>
-                        <h2>Confirm Transfer to {selectedUser.name} ({selectedUser.accountno})</h2>
-                        <p>Are you sure you want to transfer <b>₹{amount}</b> to account number {selectedUser.accountno}?</p>
-                        <button className="user-submitButton" onClick={handleConfirmTransfer}>Confirm</button>
+            <h2 className="user-header">
+                Please select the Receivers Account
+            </h2>
+            <div className="cardContainer">
+                {users.length > 0 ? renderUsers() : <p>No users available.</p>}
+                {showModal && selectedUser && (
+                    <div className="user-modal" style={{ display: 'flex' }}>
+                        <div className="user-modalContent">
+                            <button className="user-cancelButtonTopRight" onClick={handleModalClose}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-x-lg" viewBox="0 0 16 16">
+                                    <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                                </svg>
+                            </button>
+                            <h2>Confirm Transfer to {selectedUser.name} ({selectedUser.accountno})</h2>
+                            <p>Are you sure you want to transfer <b>₹{amount}</b> to account number {selectedUser.accountno}?</p>
+                            <button className="user-submitButton" onClick={handleConfirmTransfer}>Confirm</button>
+                        </div>
                     </div>
-                </div>
-            )}
-            {showPopup && (
-                <Popup message={popupMessage} onClose={() => setShowPopup(false)} />
-            )}
-        </div>
+                )}
+                {showPopup && (
+                    <Popup message={popupMessage} onClose={() => setShowPopup(false)} />
+                )}
+            </div>
         </>
     );
 }
