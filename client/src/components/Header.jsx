@@ -45,7 +45,7 @@ function Header() {
                             <img className="logo" style={{ width: "6vh" }} src="../TheSparksFoundationsLogo.png" alt="Sparks Foundation Logo"></img>
                             <Nav.Link href="https://www.thesparksfoundationsingapore.org/" target="_blank">Home</Nav.Link>
                             <Nav.Link href="https://internship.thesparksfoundation.info/" target="_blank">Internships</Nav.Link>
-                            <Nav.Link href="https://internship.thesparksfoundation.info/" target="_blank">Contact Us</Nav.Link>
+                            <Nav.Link href="https://www.thesparksfoundationsingapore.org/contact-us/" target="_blank">Contact Us</Nav.Link>
                         </Nav>
                     </Offcanvas.Body>
                 </Navbar.Offcanvas>
