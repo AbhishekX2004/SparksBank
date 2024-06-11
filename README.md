@@ -13,11 +13,11 @@ In the project directory, you can run the following commands:
 
 This command runs the backend server on port 8080.
 
-### `npm server`
+### `npm run server`
 
 This command runs the server in development mode on port 8080.
 
-### `npm client`
+### `npm run client`
 
 This command runs the app in development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
